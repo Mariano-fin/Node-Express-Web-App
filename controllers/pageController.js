@@ -1,4 +1,4 @@
-import { getAllUsers } from "../services/userService"
+import { getAllUsers } from "../services/userService.js"
 
 export const statusController = (req, res) => {
     res.json({ status : "ok" })
