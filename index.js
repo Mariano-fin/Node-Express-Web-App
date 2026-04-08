@@ -11,6 +11,8 @@ app.use(express.static("public"))
 
 app.use(newLog)
 
+app.use(express.json())
+
 app.use(router)
 
 app.listen(PORT, () => {                    

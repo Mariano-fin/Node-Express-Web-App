@@ -1,4 +1,4 @@
-import { principal, statusController, getUsers } from "../controllers/pageController.js";
+import { principal, statusController, getUsers, updateUserController, deleteUserController } from "../controllers/pageController.js";
 import { Router } from "express";
 
 
@@ -9,3 +9,6 @@ router.get("/", principal)
 router.get("/usuarios", getUsers)
 
 export default router
+
+router.put("/usuarios/:id", updateUserController)
+router.delete("/usuarios/:id", deleteUserController)

@@ -28,3 +28,8 @@
 [30-03-2026, 2:13:23 p. m.] /favicon.ico 
 [30-03-2026, 2:41:26 p. m.] /usuarios 
 [30-03-2026, 2:41:26 p. m.] /favicon.ico 
+[08-04-2026, 10:33:11 a. m.] /usuarios 
+[08-04-2026, 10:34:27 a. m.] /usuarios 
+[08-04-2026, 10:34:48 a. m.] /usuarios/1 
+[08-04-2026, 10:39:26 a. m.] /usuarios/1 
+[08-04-2026, 10:42:28 a. m.] /usuarios/1?nombre=John%20McTiernan&email=diehard@gmail.com&saldo=100 
