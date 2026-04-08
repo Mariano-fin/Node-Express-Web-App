@@ -1,4 +1,4 @@
-import { getAllUsers, updateUser, deleteUser } from "../services/userService.js"
+import { getAllUsers, getAllUsersORM, getUsersWithPeliculas, updateUser, deleteUser, createUserWithLog } from "../services/userService.js"
 
 export const statusController = (req, res) => {
     res.json({ status : "ok" })
@@ -40,5 +40,38 @@ export const deleteUserController = async (req, res) => {
     } catch (err) {
         console.error("Error al eliminar usuario:", err);
         res.status(500).json({ error: "Error al eliminar usuario" });
+    }
+};
+
+export const createUserController = async (req, res) => {
+    try {
+        const { nombre, email, saldo } = req.body;
+        const usuario = await createUserWithLog(nombre, email, saldo);
+        res.status(201).json({ message: "Usuario creado con log", usuario });
+    } catch (err) {
+        console.error("Error en transacción:", err);
+        res.status(500).json({ error: "Error al crear usuario" });
+    }
+};
+
+export const getUsersORM = async (req, res) => {
+    try {
+        const usuarios = await getAllUsersORM();
+        res.json({ usuarios });
+    } catch (err) {
+        console.error("Error al obtener usuarios con ORM:", err);
+        res.status(500).json({ error: "Error al obtener usuarios" });
+    }
+};
+
+
+
+export const getUsersWithPeliculasController = async (req, res) => {
+    try {
+        const usuarios = await getUsersWithPeliculas();
+        res.json({ usuarios });
+    } catch (err) {
+        console.error("Error al obtener usuarios con películas:", err);
+        res.status(500).json({ error: "Error al obtener datos" });
     }
 };
