@@ -1,5 +1,6 @@
 import { getAllUsers, getAllUsersORM, getUsersWithPeliculas, updateUser, deleteUser, createUserWithLog } from "../services/userService.js";
 import { sendResponse } from "../utils/response.js";
+import jwt from 'jsonwebtoken';
 
 export const statusController = (req, res) => {
     sendResponse(res, 200, "Servidor funcionando correctamente");
@@ -81,4 +82,20 @@ export const uploadFile = (req, res) => {
         filename: req.file.filename,
         path: `/uploads/${req.file.filename}`
     });
+};
+
+export const login = (req, res) => {
+    const { usuario, password } = req.body;
+
+    if (usuario !== process.env.ADMIN_USER || password !== process.env.ADMIN_PASSWORD) {
+        return sendResponse(res, 401, "Credenciales incorrectas");
+    }
+
+    const token = jwt.sign(
+        { usuario },
+        process.env.JWT_SECRET,
+        { expiresIn: '2h' }
+    );
+
+    sendResponse(res, 200, "Login exitoso", { token });
 };
